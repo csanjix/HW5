@@ -1,24 +1,28 @@
-def selection_sort(arr):
-    for i in range(len(arr)):
-        min_index = i
-        for j in range(i + 1, len(arr)):
-            if arr[j] < arr[min_index]:
-                min_index = j
-        arr[i], arr[min_index] = arr[min_index], arr[i]
-
-
-my_list = [64, 25, 12, 22, 11]
-selection_sort(my_list)
-print("Отсортированный массив:", my_list)
-
-sort_lst = []
-
-
 def bubble_sort(lst):
-    while len(lst) != 0:
-        m = lst.index(max(lst))
-        sort_lst.append(lst.pop(m))
-    return f"отсортированный список - {sort_lst}"
+    for i in range(len(lst)-1):
+        for j in range(len(lst)-1):
+            if lst[j] > lst[j+1]:
+                lst[j], lst[j+1] = lst[j+1], lst[j]
+    return lst
 
 
-print(bubble_sort([111, 54, 44, 14, 62, 112, 32]))
+print(bubble_sort([6, 1, 4, 2, 6, 9]))
+
+
+def binary_search(lst, val):
+    n = len(lst)
+    left, right = 0, n - 1
+    while left <= right:
+        middle = (left + right) // 2
+        if lst[middle] == val:
+            print("Element found")
+            return middle
+        elif lst[middle] > val:
+            right = middle - 1
+        else:
+            left = middle + 1
+    print('Element wasn\'t found')
+    return -1
+
+
+print(binary_search([1, 3, 4, 6, 8, 9], 7))
